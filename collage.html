@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collage</title>
+    
+</head>
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        background-color: #375155;
+        color: #f5f5f5;
+        font-family:'Courier New', Courier, monospace;
+    }
+
+    header {
+        position: fixed;
+        top: 10px;
+        left: 40px;
+    }
+
+    @keyframes fadeIn {
+        0% {opacity: 1;}
+        80% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+    @keyframes ZfadeIn {
+        0% {transform: translate(-50%, -50%) scale(0.1) }
+        50% {transform: translate(-50%, -50%) scale(0.08) }
+        100% {transform: translate(-50%, -50%) scale(0.1)}
+    }
+
+    img {
+        position: absolute;  
+        animation: ZfadeIn 0.2s;
+        /* animation: fadeIn 0.2s; */
+    }
+
+    img:hover {
+        z-index: 1;
+        animation: ZfadeIn 0.2s;
+        /* animation: fadeIn 0.2s; */
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Hola viajeros</h1>
+    </header>
+</body>
+
+<script>
+    const numImgs = 10;
+    // Crear lista (arreglo) para guardar los nombres de las imagenes
+    const images = []
+    // como deseo hacerlo de forma automatizada, elleno el arreglo con una sentencia FOR
+    for(let i = 1; i <= numImgs;  i++) {
+        const newName = `stickers/${i}.png`
+        images.push(newName);
+    }
+    // Instruccion de consola para comprobar el sresultado de las operaciones que realice
+    console.log(images);
+
+    // Inicio un contador para que sepa que sticker elegir de la lista
+    let contador = 0;
+
+    // funcion creada para poner una imagen de forma dinamica
+    function placeImage(x, y) {
+
+        // contador verifica que el sticker este dentro del limite
+        // en caso de que no reinicia la cuenta
+        // en caso contrario aumenta en 1 cada ejecucion
+        if(contador < images.length) {
+            const nextImage = images[contador]
+            const img = document.createElement("img");
+            img.setAttribute("src", nextImage)
+            img.style.left = x + "px"
+            img.style.top = y + "px"
+            // img.style.width = "200px"
+            // img.style.height = "200px" 
+            img.style.transform = "translate(-50%, -50%) scale(0.1) rotate("+ (Math.random() * 40 - 20) +"deg)"      
+            document.body.appendChild(img)
+            contador += 1;
+        } else if (contador === images.length) {
+            contador = 0;
+        }
+    }
+
+    // // Funcion para colocar automaticamente en diagonal, solo para test
+    // function diagonal() {
+    //     for(let i = 0; i <= (numImgs* 2); i++) {
+    //         placeImage(i * 80, i * 50)
+    //     }
+    // }
+    // diagonal()
+
+    document.addEventListener("click", function(event) {
+            event.preventDefault()
+            placeImage(event.pageX, event.pageY)
+        })
+
+    document.addEventListener("touchend", function(event) {
+            event.preventDefault()
+            const touches = event.changedTouches;
+            for(let i = 0; i < touches.length; i ++) {
+                placeImage(touches[i].pageX, touches[i].pageY)
+            }
+            
+        })
+</script>
+
+</html>
+
+
+<!-- Manejo de eventos de touch
+https://developer.mozilla.org/en-US/docs/Web/API/Touch_events#example -->
+
+<!-- Manejo de archivos
+https://developer.mozilla.org/es/docs/Learn/Getting_started_with_the_web/Dealing_with_files -->
