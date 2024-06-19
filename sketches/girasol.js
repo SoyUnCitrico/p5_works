@@ -20,20 +20,20 @@ let sf_petalos = [];
 function setup() {
     createCanvas(1254, 1254).parent('mainContainer');
     background(skyColor);
-    push();
-    noStroke();
-    fill(sfColor2);
-    ellipse(width/2, height/2, 1254, 1254);
+    // push();
+    // noStroke();
+    // fill(sfColor2);
+    // ellipse(width/2, height/2, 1254, 1254);
 
-    fill(sfColor3);
-    ellipse(width/2, height/2, 532, 532);
+    // fill(sfColor3);
+    // ellipse(width/2, height/2, 532, 532);
 
-    fill(sfColor2);
-    ellipse(width/2, height/2, 368, 352);
+    // fill(sfColor2);
+    // ellipse(width/2, height/2, 368, 352);
 
-    fill(sfColor1);
-    ellipse(width/2, height/2, 252, 228);
-    pop();
+    // fill(sfColor1);
+    // ellipse(width/2, height/2, 252, 228);
+    // pop();
 
     sf_centro1 = [...setSpiral(9.01, 0, 252, 252*3.1, numParticulas_1, 4, 0, 'square', sfColor1)];
     sf_centro2 = [...setSpiral(3.115, 125, 364, (368-252) * 4.2, numParticulas_2, 10, 1, 'circle', sfColor2)];

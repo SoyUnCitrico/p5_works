@@ -1,5 +1,5 @@
 class Particle {
-  constructor(posicion = createVector(random(0, width), random(0, height)), size = 5, stroke = 1, type = 'circle', particleColor = "#000000", particleAngle = 0) {
+  constructor(posicion = createVector(random(0, width), random(0, height)), size = 5, stroke = 1, type = 'circle', particleColor = "#000000", particleStrokeColor = "#000000", particleAngle = 0) {
     this.pos = createVector(posicion.x, posicion.y);
     this.size = size;
     this.vel = createVector(0, 0);
@@ -11,6 +11,11 @@ class Particle {
     this.g = green(particleColor);
     this.b = blue(particleColor);
 
+    this.rS = red(particleStrokeColor);
+    this.gS = green(particleStrokeColor);
+    this.bS = blue(particleStrokeColor);
+    this.aS = alpha(particleStrokeColor);
+
     this.angle = particleAngle;
 
     // this.r = 0;
@@ -21,6 +26,7 @@ class Particle {
     this.alphaIncrement = -0.005;
     /* this.stroke = random(1, 5); */
     this.stroke = stroke;
+    this.particleStrokeColor =  particleStrokeColor;
     this.type = type;
     this.direction = createVector(random(1),random(1));
     this.counter = 0;
@@ -76,7 +82,7 @@ class Particle {
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.angle);
-    stroke(this.r, this.g, this.b, this.alpha);
+    stroke(this.rS, this.gS, this.bS, this.aS);
     strokeWeight(this.stroke);
     fill(this.r,this.g,this.b,this.alpha);
     switch(type) {

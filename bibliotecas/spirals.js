@@ -8,6 +8,7 @@ class Spiral {
     particleStroke
     particleType
     particleColor
+    particleStrokeColor
     particles
     offsetAngle
     spiral
@@ -21,7 +22,8 @@ class Spiral {
             particleSize = 5,  // tamaño de las particulas en la espiral
             particleStroke = 2, 
             particleType = 'circle', 
-            particleColor = '#000000'
+            particleColor = '#000000',
+            particleStrokeColor = '#000000'
         ) {
             this.totalParticles = totalParticles;
             this.cicles = cicles;
@@ -31,7 +33,8 @@ class Spiral {
             this.particleSize = particleSize;
             this.particleStroke = particleStroke;
             this.particleType = particleType;
-            this.particleColor = particleColor;            
+            this.particleColor = particleColor;
+            this.particleStrokeColor = particleStrokeColor;          
             this.offsetAngle = 0;
             
             this.spiral = [];
@@ -42,7 +45,7 @@ class Spiral {
                 let xPos = actualRadio * sin(angle) + width / 2;
                 let yPos = actualRadio * cos(angle) + height / 2; 
                 const newPos = createVector(xPos, yPos);
-                const newParticle = new Particle(newPos, this.particleSize, this.particleStroke, this.particleType, this.particleColor, angle);
+                const newParticle = new Particle(newPos, this.particleSize, this.particleStroke, this.particleType, this.particleColor, this.particleStrokeColor, angle);
                 this.spiral.push(newParticle);
             }
     }
@@ -82,6 +85,18 @@ class Spiral {
       this.position = position
     }
 
+
+    getRadioInterior() {
+      return this.radioInt;
+    }
+
+    getRadioExterior() {
+      return this.radioExt;
+    }
+
+    getOffsetAngle() {
+      return this.offsetAngle;
+    }
 
     draw() {
       // console.log(this.spiral ) 
